@@ -30,7 +30,6 @@ Nginx (Reverse Proxy)
 Services:
 
 | Service | Description |
-| ------ | ------- |
 |:-------- | --------:|
 | API |	Backend REST API |
 | Frontend | SSR frontend with BFF endpoints |
