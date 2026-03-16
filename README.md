@@ -354,6 +354,8 @@ By caching the Pokémon data locally, pack generation becomes **fast and reliabl
 
 ## Recommended Initialization Process
 
+before of start go to api/src/main/org/kmontano/minidex/resources and rename the application.properties.example file, remove the final extention .example, this is the spring configuration file
+
 When deploying the application for the first time:
 
 1. Start the containers
