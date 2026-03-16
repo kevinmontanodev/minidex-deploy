@@ -1,0 +1,343 @@
+@import "tailwindcss";
+
+/* Defaults styles */
+html,
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+body.battle header {
+	display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+body.battle {
+    background-image: url('/batlleBackground.webp');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+.skeleton-shimmer {
+	background: linear-gradient(
+		90deg,
+		rgba(255,255,255,0.05) 25%,
+		rgba(255,255,255,0.2) 50%,
+		rgba(255,255,255,0.05) 75%
+	);
+	background-size: 200% 100%;
+	animation: shimmer 1.4s infinite linear;
+}
+
+/* oprions container */
+.option-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.option-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.option-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.option-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.option-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.4) transparent;
+}
+
+/* Pack card */
+.pack-card {
+    opacity: 0;
+    position: relative;
+    transform: translateY(40px) scale(0.8);
+    transition: box-shadow 0.3s ease;
+    background:
+        url("/public/textures/backgroundCard.svg"),
+        linear-gradient(135deg, var(--rarity-main), var(--rarity-dark));
+        
+    background-blend-mode: overlay;
+}
+
+.pokemon-name {
+    opacity: 0;
+    font-size: 1200px;
+    position: absolute;
+    transform: translateY(800px) translateX(-50%);
+    left: 50%;
+    bottom: 2px;
+}
+
+.pokemon-img {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+.pack-card[data-rarity="LEGENDARY"] {
+    box-shadow: 0 0 20px rgba(255, 179, 0, 0.6);
+} 
+
+/* evolution overlay */
+.flash-overlay {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.waiting-pokeball-bg{
+	z-index: -10;
+	overflow: hidden;
+}
+
+.waiting-pokeball-bg::before {
+	content: "";
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle at center, #998d8d, #68675f, #181817);
+	background: conic-gradient(#ad9393, #3d302f, #533e3d, #7e7473);
+  	z-index: -1;
+	animation: rotateEffect 2s linear infinite;
+	opacity: var(--p-opacity, 0);
+}
+
+.pokeball-point {
+	background: #000;
+	animation: turnOnOff 0.8s alternate infinite;
+	box-shadow: 2px 2px 8px #000;
+}
+
+.triangulo {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+/* Triángulo de abajo a la izquierda */
+.t-lower {
+  background: linear-gradient(30deg, #8f0b02, #ffd722, #8f0b02, #8f0b02, #8f0b02);
+  /* Puntos: Top-Left, Bottom-Left, Bottom-Right */
+  clip-path: polygon(0 0, 0% 100%, 100% 100%);
+  
+}
+
+/* Triángulo de arriba a la derecha */
+.t-upper {
+  background: linear-gradient(30deg,  #021050, #020d72, #020d72, #469eaa, #020d72);
+  /* Puntos: Top-Left, Top-Right, Bottom-Right */
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+
+/* utility classes for animations */
+.custom-pulse-animation {
+	animation: bounce-pulse 2s ease-in-out infinite;
+}
+
+.appear {
+    animation:appear 1s ease-in-out forwards;
+}
+
+.to-up {
+	animation: toUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.on-closing {
+	animation: onClosing .4s ease-in forwards;
+}
+
+.fade-backdrop {
+    animation: fadeBackdrop 0.3s ease forwards;
+}
+
+.show-up {
+	animation: show-up .5s ease-in-out forwards;
+}
+
+.fade-in {
+	animation: fadeIn .9s ease-out forwards;
+}
+
+.shiny {
+  animation: shinyGlow 1.5s infinite alternate;
+}
+
+.normal {
+	animation: normalGlow 1.5s infinite alternate;
+}
+
+.evolution {
+	animation: evolutionGlow 1.5s infinite alternate;
+}
+
+.growth {
+	animation: growth .425s ease-in forwards;
+}
+
+.stat {
+	animation: fromBotton .450s ease-in-out forwards;
+}
+
+.to-bottom{
+	animation: toBottom .8 ease-out forwards;
+}
+
+/* Animations */
+@keyframes bounce-pulse {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	} 
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes appear {
+	from {
+		opacity: 0;
+	} to {
+		opacity:1;
+	}
+}
+
+@keyframes toUp {
+	from {
+		opacity: 0;
+		transform: translateY(24px) scale(0.96);
+	} to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes onClosing{
+	from {
+		opacity: 1;
+		transform: scale(1);
+	} 
+	to {
+		opacity: 0;
+		transform: scale(0.92);
+	}
+}
+
+@keyframes fadeBackdrop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes show-up {
+	from {
+		scale: 0;
+		opacity: 0;
+	} 
+	to {
+		scale: 1;
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: scale(0) translateY(100px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+@keyframes shinyGlow {
+    from { filter: drop-shadow(0 0 6px #fff176); }
+    to   { filter: drop-shadow(0 0 18px #ffd700); }
+}
+
+@keyframes normalGlow {
+	from { filter: drop-shadow(0 0 3px #cec); }
+ 	to   { filter: drop-shadow(0 0 10px #fff); }
+}
+
+@keyframes evolutionGlow {
+	from { filter: drop-shadow(0 0 3px rgb(127, 10, 163)); }
+ 	to   { filter: drop-shadow(0 0 10px #230750); }
+}
+
+@keyframes growth {
+	from {
+		opacity: 0;
+		scale: 0;
+	}
+	to {
+		opacity: 1;
+		scale: 1;
+	}
+}
+
+@keyframes fromBotton {
+	from {
+		transform: translateY(15px);
+		opacity: 0;
+	}to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes toBottom {
+	 to {
+		opacity: 0;
+		transform: scale(0) translateY(100px);
+	}
+}
+
+@keyframes turnOnOff {
+	from {
+		background: #000;
+	}
+	to {
+		background: #fff;
+	}
+}
+
+@keyframes rotateEffect {
+	from {
+		transform: rotate(0deg);
+	} to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes shimmer {
+	from {
+		background-position: -200% 0;
+	}
+	to {
+		background-position: 200% 0;
+	}
+}

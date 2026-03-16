@@ -1,0 +1,20 @@
+export const POKEMONS_TYPES_COLORS : Record<string, string> = {
+    'bug': '#8FC02C',
+    'flying': '#92AADD',
+    'normal': '#9099A2',
+    'figth' : '#CF3F68',
+    'poison' : '#AC6AC5',
+    'ground' : '#DA7748',
+    'rock' : '#C8B78A',
+    'ghost' : '#5468AD',
+    'fire' : '#FE9D50',
+    'steel' : '#5B8FA2',
+    'water' : '#4D90D4',
+    'grass' : '#65BB5C',
+    'electric' : '#F4D23A',
+    'psychic' : '#F97077',
+    'ice' : '#75CFC0',
+    'drake' : '#096EC3',
+    'dark' : '#5C5467',
+    'fairy' : '#EA91E8'
+}

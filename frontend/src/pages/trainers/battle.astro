@@ -1,0 +1,67 @@
+---
+import { BattleCamp } from "@/features/battle/components/BattleCamp";
+import { BattleTransitionScene } from "@/features/battle/components/BattleTransitionScene"
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Minidex | Battle">
+    <section class="bg-battle px-4 relative text-white h-screen w-full flex justify-center items-center" >
+        <BattleCamp client:load/>
+    </section>
+    
+	<BattleTransitionScene client:load />
+
+</Layout>
+
+<style is:global>
+    .scene {
+        width: 672px;
+        height: 368px;
+        perspective: 1600px; 
+        overflow: hidden;
+        position: relative;
+    }
+
+    .battlefield {
+        width: 540px; 
+        height: 1300px;
+        background: #0f1117;
+
+        position: absolute;
+        bottom: -60px;
+        left: -250px;
+
+        transform-origin: bottom center;
+        transform: rotateX(70deg) rotateZ(32deg);
+    }
+
+    .boder-animate {
+        animation: borderAnimated 1.5s infinite alternate;
+    }
+
+    @keyframes borderAnimated {
+        from {
+            filter: drop-shadow(0 0 6px #0c6d03);
+            border-color: rgb(5, 112, 5);
+        }to {
+            filter: drop-shadow(0 0 18px #0cbd06); 
+            border-color: rgb(16, 240, 16);
+        }
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .animate-fadeIn {
+        animation: fadeInScale 0.25s ease-out;
+    }
+
+</style>

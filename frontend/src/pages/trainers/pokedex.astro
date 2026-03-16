@@ -1,0 +1,51 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {PokedexContainer} from "@/features/pokedex/components/PokedexContainer"
+import { PokemonDetails } from "@/features/pokedex/components/PokemonDetails";
+import {TeamPokemon} from "@/features/pokedex/components/TeamPokemon"
+import type {Pokedex} from "@/interfaces/pokedex"
+import { getMyPokedex, getPokemonTeam } from "@/server/services/pokedex.service";
+import type { Pokemon } from "@/interfaces/pokemon";
+import { StartBattleBtn } from "@/features/pokedex/components/StartBattleBtn";
+import type { PokedexPageInfo } from "@/features/pokedex/types/pokedex.types";
+
+if (!Astro.locals.token){
+    return Astro.redirect("/login")
+}
+
+const resPokedex = await getMyPokedex(Astro.locals.token, "0", "12")
+
+const resTeam = await getPokemonTeam(Astro.locals.token)
+
+const pokemonTeam = resTeam.team as Pokemon[]
+const pokedexPage = resPokedex as PokedexPageInfo
+---
+
+<Layout title="MiniDex | Mi Pokedex">
+    <div class="overlay-pokedex fixed bg-black -z-100 opacity-0 inset-0 text-white flex justify-center items-center">Starting Battle...</div>
+
+    <h2 class="font-bold text-2xl text-center text-white mt-4">My Pokédex</h2>
+
+
+    <div class="grid-pokedex-container px-2 gap-1.5">
+        <TeamPokemon client:load pokemonTeamFromRequest={pokemonTeam}  />
+        <PokedexContainer client:load pokedexPage={pokedexPage} />
+        <PokemonDetails client:load/>
+    </div>
+
+    <StartBattleBtn client:load />
+</Layout>
+
+
+<style>
+    .grid-pokedex-container {
+        display: grid;
+        grid-template-areas: 
+        "team pokemonDetail"
+        "pokedex pokemonDetail"
+        ;
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;
+    }
+</style>

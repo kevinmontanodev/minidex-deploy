@@ -1,0 +1,26 @@
+---
+import { ClientRouter } from "astro:transitions";
+const {title} = Astro.props
+import '@/styles/global.css'
+import Header from "@/components/Header.astro";
+import { GlobalAlert } from "@/components/ui/GlobalAlert";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/pokeball.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ClientRouter fallback="none" />
+	</head>
+	<body class="bg-gradient-to-tl from-[#1500F7] via-[#6D02C6] to-[#CB0492] relative bg-no-repeat bg-fixed min-h-full">
+		<Header/>
+		<div class="max-w-7xl mx-auto">
+			<slot />
+		</div>
+		<GlobalAlert client:load />		
+	</body>
+</html>

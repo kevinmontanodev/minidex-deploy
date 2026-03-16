@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { EnvelopesContainer } from "@/features/packs/components/EnvelopesContainer";
+import { getDailyEnvelpeStatus } from '@/server/services/trainer.service';
+import Disclaimer from '@/components/Disclaimer.astro';
+
+if (!Astro.locals.token){
+    return Astro.redirect("/login")
+}
+
+const dailyPackStatus = await getDailyEnvelpeStatus(Astro.locals.token);
+---
+
+<Layout title="MiniDex | Home">
+	<div>
+		<section class="p-4">
+			<h2 class="text-center font-bold text-2xl text-white">Your Daily Packs</h2>
+
+			<EnvelopesContainer initialAmount={dailyPackStatus?.numEnvelopes || 0} emptyMessage='There are no more envelopes to open, come back tomorrow for more rewards.' client:load />
+		</section>
+	</div>
+	<Disclaimer/>
+</Layout>

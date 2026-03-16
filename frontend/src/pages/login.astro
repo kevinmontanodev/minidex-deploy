@@ -1,0 +1,45 @@
+---
+import { GlobalAlert } from "@/components/ui/GlobalAlert";
+import { LoginForm } from "@/features/auth/components/LoginForm";
+import Disclaimer from "@/components/Disclaimer.astro";
+import '@/styles/global.css'
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/svg+xml" href="/pokeball.png" />
+    <title>MiniDex | Login</title>
+</head>
+<body>
+    <section class="w-screen h-screen bg-fixed relative flex items-center justify-center bg-gradient-to-tl from-[#1500F7] via-[#6D02C6] to-[#CB0492]">
+        <LoginForm client:load />
+        <GlobalAlert client:load />
+
+        <Disclaimer/>
+    </section>
+</body>
+</html>
+
+
+<style>
+    .show {
+        animation: show backwards  .6s ease-in-out;
+    }
+
+    @keyframes show {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    section {
+        background-image: url('/batlleBackground.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>

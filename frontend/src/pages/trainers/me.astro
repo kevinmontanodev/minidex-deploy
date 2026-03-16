@@ -1,0 +1,19 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {TrainerProfile} from "@/features/trainer/components/TrainerProfile"
+import { getTrainerData } from "@/server/services/trainer.service";
+
+if (!Astro.locals.token){
+    return Astro.redirect("/login")
+}
+
+const trainerProfile = await getTrainerData(Astro.locals.token)
+---
+
+<Layout>
+    <section class="max-w-2xl bg-white/20 mx-auto mt-4 rounded-md p-4 text-white relative">
+      <h1 class="text-center text-2xl">PROFILE</h1>
+      <img src="/pokemon-trainer.webp" class="mx-auto w-20" alt="default trainer logo">
+      <TrainerProfile trainerProfile={trainerProfile} client:load />
+    </section>
+</Layout>

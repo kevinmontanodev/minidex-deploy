@@ -1,0 +1,9 @@
+<svg width="120" height="40" viewBox="0 0 120 33" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="116" height="26" rx="18" fill="#6B7280" stroke="white" stroke-width="2" />
+    <g transform="translate(0, 0)">
+        <circle cx="16" cy="15" r="7" stroke="white" stroke-width="1.5" fill="none"/>
+        <path d="M10 15 h12" stroke="white" stroke-width="1.5"/>
+        <circle cx="16" cy="15" r="3" fill="white"/>
+        <text x="65" y="54%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-weight="bold" font-style="italic" font-size="16" letter-spacing="2" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">ALL</text>
+    </g>
+</svg>

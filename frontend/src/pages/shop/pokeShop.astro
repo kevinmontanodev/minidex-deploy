@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {TrainerInfo} from "@/features/trainer/components/TrainerInfo"
+import {StoreCardPokemon} from "@/features/shop/components/StoreCardPokemon"
+import { EnvelopesContainer } from "@/features/packs/components/EnvelopesContainer";
+import { getDailyShopData } from "@/server/services/shop.service";
+import { getTrainerData } from "@/server/services/trainer.service";
+
+if (!Astro.locals.token){
+    return Astro.redirect("/login")
+}
+
+const pokemonStoreStatus = await getDailyShopData(Astro.locals.token)
+const trainer = await getTrainerData(Astro.locals.token)
+const {boosterPrice, boostersRemaining, specialPokemon, specialPokemonPrice, specialPokemonPurchased} = pokemonStoreStatus
+---
+
+<Layout>
+    <h2 class="text-2xl text-center font-bold text-white mt-2">Welcome to the Poke Shop!</h2>
+    <section class="max-w-3xl bg-white/10 mx-auto rounded-md p-4 mt-2 flex gap-2">
+        <StoreCardPokemon specialPokemon={specialPokemon} specialPokemonPrice={specialPokemonPrice} specialPokemonPurchased={specialPokemonPurchased} client:load />
+        <div class="flex flex-col w-full">
+
+            <TrainerInfo client:visible trainerResponse={trainer} />
+
+            <EnvelopesContainer client:load initialAmount={boostersRemaining} packPrice={boosterPrice} emptyMessage="There are no more envelopes to buy, come back tomorrow." />
+        </div>
+    </section>
+</Layout>

@@ -1,0 +1,27 @@
+# Dependencias
+node_modules
+.pnpm-store
+.yarn
+
+# Compilación y caché de Astro/React
+dist
+.astro
+.cache
+
+# Entorno y secretos
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# IDE y sistema
+.vscode
+.DS_Store
+npm-debug.log

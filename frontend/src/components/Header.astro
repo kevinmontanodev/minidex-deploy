@@ -1,0 +1,32 @@
+<header class="bg-white/20 flex justify-between items-center px-10 py-4 text-white">
+	<a href="/" class="cursor-pointer">
+		<img src="/pokeball.webp" alt="pokeball img that redirect to index" title="pokeball" class="w-6">
+	</a>
+	<nav>
+		<ul class="flex gap-2">
+            <li>
+				<a href="/" class="hover:bg-zinc-200/30 p-2 rounded-sm transition-all">Home</a>
+			</li>
+			<li>
+				<a href="/trainers/pokedex" class="hover:bg-zinc-200/30 p-2 rounded-sm transition-all">Pokedex</a>
+			</li>
+			<li>
+				<a href="/shop/pokeShop" class="hover:bg-zinc-200/30 p-2 rounded-sm transition-all">Shop</a>
+			</li>
+			<li>
+				<a href="/trainers/me" class="hover:bg-zinc-200/30 p-2 rounded-sm transition-all">Profile</a>
+			</li>
+			<li>
+				<form action="/api/auth/logout" method="POST" class="flex p-0 m-0">
+					<button
+					type="submit"
+					class="hover:bg-zinc-200/30 px-2  rounded-sm transition-all cursor-pointer"
+					title="Log out from your account"
+					>
+					Log out
+					</button>
+				</form>
+			</li>
+		</ul>
+	</nav>
+</header>
