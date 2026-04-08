@@ -424,3 +424,5 @@ This repository exists to:
 - simplify local development
 - document the infrastructure architecture
 - orchestrate the application stack
+
+[🚀 Live Demo](https://kmontano-minidex.vercel.app/login)
